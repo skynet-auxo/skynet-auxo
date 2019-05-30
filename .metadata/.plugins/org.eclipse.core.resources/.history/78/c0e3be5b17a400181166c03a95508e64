@@ -1,0 +1,22 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:HelloThymeleaf.java 
+ * Package Name:com.skynet.controller 
+ * History
+ * Seq   Date        Developer      Description                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月20日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.controller;
+
+/**
+ * @author Administrator
+ *
+ */
+public class HelloThymeleaf {
+
+}

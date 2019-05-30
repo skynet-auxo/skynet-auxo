@@ -1,0 +1,140 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:DictServiceImpl.java 
+ * Package Name:com.skynet.common.service.impl 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月24日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import com.skynet.common.bean.Egcmdicdef;
+import com.skynet.common.service.DictService;
+import com.skynet.system.bean.Esecusrdef;
+
+/**
+ * @author Administrator
+ *
+ */
+public class DictServiceImpl implements DictService {
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#get(java.lang.Long)
+	 */
+	@Override
+	public Egcmdicdef get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#list(java.util.Map)
+	 */
+	@Override
+	public List<Egcmdicdef> list(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#count(java.util.Map)
+	 */
+	@Override
+	public int count(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#save(com.skynet.common.bean.Egcmdicdef)
+	 */
+	@Override
+	public int save(Egcmdicdef dict) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#update(com.skynet.common.bean.Egcmdicdef)
+	 */
+	@Override
+	public int update(Egcmdicdef dict) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#remove(java.lang.Long)
+	 */
+	@Override
+	public int remove(Long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#batchRemove(java.lang.Long[])
+	 */
+	@Override
+	public int batchRemove(Long[] ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#listType()
+	 */
+	@Override
+	public List<Egcmdicdef> listType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#getName(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getName(String type, String value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#getHobbyList(com.skynet.system.bean.Esecusrdef)
+	 */
+	@Override
+	public List<Egcmdicdef> getHobbyList(Esecusrdef user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#getSexList()
+	 */
+	@Override
+	public List<Egcmdicdef> getSexList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.DictService#listByType(java.lang.String)
+	 */
+	@Override
+	public List<Egcmdicdef> listByType(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

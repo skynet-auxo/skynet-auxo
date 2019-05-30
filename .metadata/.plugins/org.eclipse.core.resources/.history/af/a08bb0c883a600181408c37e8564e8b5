@@ -1,0 +1,24 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserDao.java 
+ * Package Name:com.skynet.system.dao 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月23日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface UserDao {
+
+}

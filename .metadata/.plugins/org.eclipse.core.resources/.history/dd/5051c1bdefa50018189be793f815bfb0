@@ -1,0 +1,42 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:RoleDao.java 
+ * Package Name:com.skynet.system.dao 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月22日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.skynet.system.bean.Esecroldef;
+
+@Mapper
+public interface RoleDao {
+	
+	private Esecroldef get(Long roleId);
+	
+	private List<Esecroldef> list(Map<String,Object> map);
+	
+	private int count(Map<String,Object> map);
+	
+	private int save(Esecroldef role);
+	
+	private int update(Esecroldef role);
+	
+	private int remove(Long roleId);
+	
+	private int batchRemove(Long[] roleIds);
+}

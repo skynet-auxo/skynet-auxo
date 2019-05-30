@@ -1,0 +1,341 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:Esecusrdef.java 
+ * Package Name:com.skynet.common.bean 
+ * History
+ * Seq   Date        Developer      Description                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月20日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.bean;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.skynet.common.bean.BaseObject;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Esecusrdef implements Serializabl {
+	private static final long serialVersionUID = 1L;
+	// 用户ID
+    private Long userId;
+    // 用户名
+    private String userName;
+    // 用户真实姓名
+    private String userDesc;
+    // 密码
+    private String passWord;
+    // 部门ID
+    private Long deptId;
+    // 部门ID
+    private String deptName;
+    // 邮箱
+    private String email;
+    // 手机号
+    private String mobile;
+    // 状态 0:禁用，1:正常
+    private Integer status;
+    // 创建用户id
+    private Long createUserId;
+    // 创建时间
+    private Date createTime;
+    
+    private Long updateUserId;
+    // 修改时间
+    private Date updateTime;
+    //角色
+    private List<Long> roleIds;
+    //性别
+    private Long sex;
+    //出身日期
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birth;
+    //图片ID
+    private Long picId;
+    //现居住地
+    private String liveAddress;
+    //爱好
+    private String hobby;
+    //省份
+    private String province;
+    //所在城市
+    private String city;
+    //所在地区
+    private String district;
+	/**
+	 * @return the userId
+	 */
+	public Long getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	/**
+	 * @return the userDesc
+	 */
+	public String getUserDesc() {
+		return userDesc;
+	}
+	/**
+	 * @param userDesc the userDesc to set
+	 */
+	public void setUserDesc(String userDesc) {
+		this.userDesc = userDesc;
+	}
+	/**
+	 * @return the passWord
+	 */
+	public String getPassWord() {
+		return passWord;
+	}
+	/**
+	 * @param passWord the passWord to set
+	 */
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
+	/**
+	 * @return the deptId
+	 */
+	public Long getDeptId() {
+		return deptId;
+	}
+	/**
+	 * @param deptId the deptId to set
+	 */
+	public void setDeptId(Long deptId) {
+		this.deptId = deptId;
+	}
+	/**
+	 * @return the deptName
+	 */
+	public String getDeptName() {
+		return deptName;
+	}
+	/**
+	 * @param deptName the deptName to set
+	 */
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	/**
+	 * @return the mobile
+	 */
+	public String getMobile() {
+		return mobile;
+	}
+	/**
+	 * @param mobile the mobile to set
+	 */
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	/**
+	 * @return the status
+	 */
+	public Integer getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	/**
+	 * @return the createUserId
+	 */
+	public Long getCreateUserId() {
+		return createUserId;
+	}
+	/**
+	 * @param createUserId the createUserId to set
+	 */
+	public void setCreateUserId(Long createUserId) {
+		this.createUserId = createUserId;
+	}
+	/**
+	 * @return the createTime
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * @param createTime the createTime to set
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * @return the updateUserId
+	 */
+	public Long getUpdateUserId() {
+		return updateUserId;
+	}
+	/**
+	 * @param updateUserId the updateUserId to set
+	 */
+	public void setUpdateUserId(Long updateUserId) {
+		this.updateUserId = updateUserId;
+	}
+	/**
+	 * @return the updateTime
+	 */
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	/**
+	 * @param updateTime the updateTime to set
+	 */
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	/**
+	 * @return the roleIds
+	 */
+	public List<Long> getRoleIds() {
+		return roleIds;
+	}
+	/**
+	 * @param roleIds the roleIds to set
+	 */
+	public void setRoleIds(List<Long> roleIds) {
+		this.roleIds = roleIds;
+	}
+	/**
+	 * @return the sex
+	 */
+	public Long getSex() {
+		return sex;
+	}
+	/**
+	 * @param sex the sex to set
+	 */
+	public void setSex(Long sex) {
+		this.sex = sex;
+	}
+	/**
+	 * @return the birth
+	 */
+	public Date getBirth() {
+		return birth;
+	}
+	/**
+	 * @param birth the birth to set
+	 */
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+	/**
+	 * @return the picId
+	 */
+	public Long getPicId() {
+		return picId;
+	}
+	/**
+	 * @param picId the picId to set
+	 */
+	public void setPicId(Long picId) {
+		this.picId = picId;
+	}
+	/**
+	 * @return the liveAddress
+	 */
+	public String getLiveAddress() {
+		return liveAddress;
+	}
+	/**
+	 * @param liveAddress the liveAddress to set
+	 */
+	public void setLiveAddress(String liveAddress) {
+		this.liveAddress = liveAddress;
+	}
+	/**
+	 * @return the hobby
+	 */
+	public String getHobby() {
+		return hobby;
+	}
+	/**
+	 * @param hobby the hobby to set
+	 */
+	public void setHobby(String hobby) {
+		this.hobby = hobby;
+	}
+	/**
+	 * @return the province
+	 */
+	public String getProvince() {
+		return province;
+	}
+	/**
+	 * @param province the province to set
+	 */
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+	/**
+	 * @return the district
+	 */
+	public String getDistrict() {
+		return district;
+	}
+	/**
+	 * @param district the district to set
+	 */
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+    
+}

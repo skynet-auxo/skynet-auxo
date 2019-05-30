@@ -1,0 +1,49 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:SkynetEyeApplication.java 
+ * Package Name:com.skyne 
+ * History
+ * Seq   Date        Developer      Description                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月18日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+@SpringBootApplication
+@EnableTransactionManagement
+@MapperScan("com.skynet.*.dao")
+//@EnableAutoConfiguration //自动加载配置信息
+//@ComponentScan("com.kelly")//使包路径下带有注解的类可以使用@Autowired自动注入
+public class SkynetEyeApplication {
+	
+	public static void main(String[] args) {
+		SpringApplication.run(SkynetEyeApplication.class, args);
+        System.out.println("ヾ(◍°∇°◍)ﾉﾞ    bootdo启动成功      ヾ(◍°∇°◍)ﾉﾞ\n" +
+                
+        		"           _______    __                          __               \n"+
+        		"          /  _____|  |  |        \\\\            / /                   \n" +
+        		"         /  /        |  |         \\\\          / /                  \n" +
+        		"        /  /         |  |    ___   \\\\        / /                 \n" +
+        		"       /  /          |  |   /  /    \\\\      / /                      \n" +
+        		"       \\\\          |  |  /  /      \\\\    / /                    \n" +
+        		"        \\\\         |  | /  /        \\\\  / /                          \n" +
+        		"         \\\\        |  |/  /          \\\\/ /                      \n" +
+        		"          \\\\       |  |\\\\           \\/ /                     \n" +
+        		"           \\\\      |  | \\\\           / /                       \n" +
+        		"            \\\\     |  |  \\\\         / /                        \n" +
+        		"             )  )    |  |   \\\\       / /                        \n" +
+        		"            /  /     |  |             / /                         \n"+
+        		"           /  /      |  |            / /                         \n"+
+        		"          /__/       |__|           /_/                           ");
+	}
+}

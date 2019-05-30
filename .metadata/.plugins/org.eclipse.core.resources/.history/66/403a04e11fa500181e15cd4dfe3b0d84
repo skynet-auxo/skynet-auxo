@@ -1,0 +1,100 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:LoginController.java 
+ * Package Name:com.skynet.system.controller 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.controller;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.skynet.common.bean.Esysfildef;
+import com.skynet.common.bean.Tree;
+import com.skynet.common.service.FileService;
+import com.skynet.system.bean.Esysmeudef;
+
+@Controller
+public class LoginController {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
+	MenuService menuService;
+	
+	@Autowired
+	FileService fileService;
+	
+	@RequestMapping({ "/", "" })
+	String welcome(Model model) {
+
+		return "redirect:/blog";
+	}
+
+	@Log("请求访问主页")
+	@RequestMapping({ "/index" })
+	String index(Model model) {
+		List<Tree<Esysmeudef>> menus = menuService.listMenuTree(getUserId());
+		model.addAttribute("menus", menus);
+		model.addAttribute("name", getUser().getName());
+		Esysfildef fileDef = fileService.get(getUser().getPicId());
+		if(fileDef!=null&&fileDef.getUrl()!=null){
+			if(fileService.isExist(fileDef.getUrl())){
+				model.addAttribute("picUrl",fileDef.getUrl());
+			}else {
+				model.addAttribute("picUrl","/img/photo_s.jpg");
+			}
+		}else {
+			model.addAttribute("picUrl","/img/photo_s.jpg");
+		}
+		model.addAttribute("username", getUser().getUsername());
+		return "index_v1";
+	}
+
+	@RequestMapping("/login")
+	String login() {
+		return "login";
+	}
+
+	@Log("登录")
+	@PostMapping("/login")
+	@ResponseBody
+	R ajaxLogin(String username, String password) {
+
+		password = MD5Utils.encrypt(username, password);
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+		Subject subject = SecurityUtils.getSubject();
+		try {
+			subject.login(token);
+			return R.ok();
+		} catch (AuthenticationException e) {
+			return R.error("用户或密码错误");
+		}
+	}
+
+	@GetMapping("/logout")
+	String logout() {
+		ShiroUtils.logout();
+		return "redirect:/login";
+	}
+
+	@GetMapping("/main")
+	String main() {
+		return "main";
+	}
+}

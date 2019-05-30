@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.skynet.system.dao.RoleDao">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap"
+		type="com.skynet.system.bean.Esecroldef">
+		<id column="role_id" property="roleId" />
+		<result column="role_name" property="roleName" />
+		<result column="role_sign" property="roleSign" />
+		<result column="remark" property="remark" />
+		<result column="create_user_id" property="createUserId" />
+		<result column="create_time" property="createTime" />
+		<result column="update_user_id" property="updateUserId" />
+		<result column="update_time" property="updateTime" />
+	</resultMap>
+	
+	<select id="get" resultType="com.skynet.system.bean.Esecroldef" resultMap="BaseResultMap">
+		select `role_id`,`role_name`,`role_sign`,`remark`,`create_user_id`,`create_time`,`update_user_id`,`update_time` 
+		from esecroldef where role_id = #{roleId}
+	</select>
+
+	<select id="list" resultType="com.skynet.system.bean.Esecroldef" resultMap="BaseResultMap">
+		select
+		`role_id`,`role_name`,`role_sign`,`remark`,`create_user_id`,`create_time`,`update_user_id`,`update_time`
+		from esecroldef
+		<where>
+			<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>
+			<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>
+			<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>
+			<if test="remark != null and remark != ''"> and remark = #{remark} </if>
+			<if test="createUserId != null and createUserId != ''"> and create_user_id = #{createUserId} </if>
+			<if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+			<if test="updateUserId != null and updateUserId != ''"> and update_user_id = #{updateUserId} </if>
+			<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by role_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from esecroldef
+		<where>
+			<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>
+			<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>
+			<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>
+			<if test="remark != null and remark != ''"> and remark = #{remark} </if>
+			<if test="createUserId != null and createUserId != ''"> and create_user_id = #{createUserId} </if>
+			<if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+			<if test="updateUserId != null and updateUserId != ''"> and update_user_id = #{updateUserId} </if>
+			<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		</where>
+	</select>
+
+	<insert id="create" parameterType="com.skynet.system.bean.Esecroldef"
+		useGeneratedKeys="true" keyProperty="roleId">
+		insert into esecroldef
+		(
+		`role_name`,
+		`role_sign`,
+		`remark`,
+		`create_user_id`,
+		`create_time`,
+		`update_user_id`,
+		`update_time`
+		)
+		values
+		(
+		#{roleName},
+		#{roleSign},
+		#{remark},
+		#{createUserId},
+		#{createTime},
+		#{updateUserId},
+		#{updateTime}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.skynet.system.bean.Esecroldef">
+		update esecroldef
+		<set>
+			<if test="roleName != null">`role_name` = #{roleName}, </if>
+			<if test="roleSign != null">`role_sign` = #{roleSign}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="createUserId != null">`create_user_id` = #{createUserId}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateUserId != null">`update_user_id` = #{updateUserId}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where role_id = #{roleId}
+	</update>
+
+	<delete id="delete">
+		delete from esecroldef where role_id = #{value}
+	</delete>
+
+	<delete id="batchDelete">
+		delete from esecroldef where role_id in
+		<foreach item="roleId" collection="array" open="(" separator=","
+			close=")">
+			#{roleId}
+		</foreach>
+	</delete>
+
+</mapper>

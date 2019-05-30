@@ -1,0 +1,11 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"><!-- 声明Thymeleaf的命名空间 -->
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+	Welcome to Thymeleaf
+	<br/>
+	<a th:href="@{/toRegister}">register</a>
+</body>
+</html>

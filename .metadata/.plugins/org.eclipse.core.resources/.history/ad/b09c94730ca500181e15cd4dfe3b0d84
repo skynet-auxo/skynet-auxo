@@ -1,0 +1,74 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:FileService.java 
+ * Package Name:com.skynet.common.service 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.skynet.common.bean.Esysfildef;
+
+public interface FileService {
+	/**
+	 * Get file
+	 * @param id
+	 * @return
+	 */
+	Esysfildef get(Long id);
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
+	List<Esysfildef> list(Map<String, Object> map);
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
+	int count(Map<String, Object> map);
+	/**
+	 * 
+	 * @param sysFile
+	 * @return
+	 */
+	int save(Esysfildef sysFile);
+	/**
+	 * 
+	 * @param sysFile
+	 * @return
+	 */
+	int update(Esysfildef sysFile);
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	int remove(Long id);
+	/**
+	 * 
+	 * @param ids
+	 * @return
+	 */
+	int batchRemove(Long[] ids);
+
+	/**
+	 * 判断一个文件是否存在
+	 * @param url FileDO中存的路径
+	 * @return
+	 */
+    Boolean isExist(String url);
+}

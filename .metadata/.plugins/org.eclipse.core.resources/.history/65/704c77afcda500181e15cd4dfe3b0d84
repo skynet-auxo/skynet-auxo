@@ -1,0 +1,71 @@
+/**  
+* @Title: ShiroRealm.java  
+* @Package com.bootdo.system.shiro  
+* @Description: TODO(用一句话描述该文件做什么)  
+* @author zero_li  
+* @date 2018年8月22日  
+* @version V1.0  
+*/
+package com.bootdo.system.shiro;
+
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.skynet.system.bean.Esecusrdef;
+import com.skynet.system.dao.UserDao;
+
+public class ShiroRealm extends AuthorizingRealm {
+	
+	@Autowired
+	private UserDao userMapper; 
+	
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 登录认证 一般情况下 , 登录成功之后就给当前用户进行权限赋予了，根据用户的权限信息做授权判断，这一步是以doGetAuthenticationInfo为基础的，
+	 * 只有在有用户信息后才能根据用户的角色和授权信息做判断是否给用户授权，因此这里的Roles和Permissions是用户的两个重点判断依据 
+	 */
+	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+		UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken; 
+		//查出是否有此用户
+		Esecusrdef user = userMapper.findByName(token.getUsername());
+		
+		Map<String, Object> map = new HashMap<>(16);
+		map.put("username", token.getUsername());
+		String password = new String((char[]) token.getCredentials());
+		Esecusrdef user = userMapper.list(map).get(0);
+	    
+	    if(user != null){ 
+	        // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验 
+	        List<URole> rlist = uRoleDao.findRoleByUid(user.getId());//获取用户角色 
+	        List<UPermission> plist = uPermissionDao.findPermissionByUid(user.getId());//获取用户权限 
+	        List<String> roleStrlist=new ArrayList<String>();////用户的角色集合 
+	        List<String> perminsStrlist=new ArrayList<String>();//用户的权限集合 
+	        for (URole role : rlist) { 
+	          roleStrlist.add(role.getName()); 
+	        } 
+	        for (UPermission uPermission : plist) { 
+	          perminsStrlist.add(uPermission.getName()); 
+	        } 
+	        user.setRoleStrlist(roleStrlist); 
+	        user.setPerminsStrlist(perminsStrlist); 
+	        Session session = SecurityUtils.getSubject().getSession(); 
+	        session.setAttribute("user", user);//成功则放入session 
+	        // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验 
+	        return new SimpleAuthenticationInfo(user, user.getPassword(), getName()); 
+	      } 
+	      return null;
+	}
+
+}

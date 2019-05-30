@@ -1,0 +1,94 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:MenuServiceImpl.java 
+ * Package Name:com.skynet.system.service.imp 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月22日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service.imp;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.skynet.common.bean.Tree;
+import com.skynet.system.bean.Esysmeudef;
+import com.skynet.system.service.MenuService;
+
+@Service
+@Transactional(readOnly = true,rollbackFor = Exception.class)
+public class MenuServiceImpl implements MenuService {
+
+	@Override
+	public Tree<Esysmeudef> getSysMenuTree(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Tree<Esysmeudef>> listMenuTree(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tree<Esysmeudef> getTree() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tree<Esysmeudef> getTree(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Esysmeudef> list(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int create(Esysmeudef menu) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Esysmeudef menu) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(Long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Esysmeudef get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<String> listPerms(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

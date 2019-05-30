@@ -1,0 +1,32 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:Esecdptdef.java 
+ * Package Name:com.skynet.system.bean 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.bean;
+
+import com.skynet.common.bean.BaseObject;
+
+public class Esecdptdef extends BaseObject {
+	
+	private Long deptId; //Department ID
+	//上级部门ID，一级部门为0
+	private Long parentId;
+	//部门名称
+	private String name;
+	//排序
+	private Integer orderNum;
+	//是否删除  -1：已删除  0：正常
+	private Integer delFlag;
+}

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.skynet.system.dao.MenuDao">
+
+	<select id="get" resultType="com.skynet.system.bean.Esysmeudef">
+		select
+		`menu_id`,`parent_id`,`name`,`url`,`perms`,`type`,`icon`,`order_num`,`create_user_id`,`create_time`,`update_user_id`,`update_time`
+		from esysmeudef where menu_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.skynet.system.bean.Esysmeudef">
+		select
+		`menu_id`,`parent_id`,`name`,`url`,`perms`,`type`,`icon`,`order_num`,`create_user_id`,`create_time`,`update_user_id`,`update_time`
+		from esysmeudef
+		<where>
+			<if test="menuId != null and menuId != ''"> and menu_id = #{menuId} </if>
+			<if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+			<if test="name != null and name != ''"> and name = #{name} </if>
+			<if test="url != null and url != ''"> and url = #{url} </if>
+			<if test="perms != null and perms != ''"> and perms = #{perms} </if>
+			<if test="type != null and type != ''"> and type = #{type} </if>
+			<if test="icon != null and icon != ''"> and icon = #{icon} </if>
+			<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+			<if test="createUserId != null and createUserId != ''"> and create_user_id = #{createUserId} </if>
+			<if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+			<if test="updateUserId != null and updateUserId != ''"> and update_user_id = #{updateUserId} </if>
+			<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by menu_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from esysmeudef
+		<where>
+			<if test="menuId != null and menuId != ''"> and menu_id = #{menuId} </if>
+			<if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+			<if test="name != null and name != ''"> and name = #{name} </if>
+			<if test="url != null and url != ''"> and url = #{url} </if>
+			<if test="perms != null and perms != ''"> and perms = #{perms} </if>
+			<if test="type != null and type != ''"> and type = #{type} </if>
+			<if test="icon != null and icon != ''"> and icon = #{icon} </if>
+			<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
+			<if test="createUserId != null and createUserId != ''"> and create_user_id = #{createUserId} </if>
+			<if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+			<if test="updateUserId != null and updateUserId != ''"> and update_user_id = #{updateUserId} </if>
+			<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		</where>
+	</select>
+
+	<insert id="create" parameterType="com.skynet.system.bean.Esysmeudef"
+		useGeneratedKeys="true" keyProperty="menuId">
+		insert into esysmeudef
+		(
+		`parent_id`,
+		`name`,
+		`url`,
+		`perms`,
+		`type`,
+		`icon`,
+		`order_num`,
+		`create_user_id`,
+		`create_time`,
+		`update_user_id`,
+		`update_time`
+		)
+		values
+		(
+		#{parentId},
+		#{name},
+		#{url},
+		#{perms},
+		#{type},
+		#{icon},
+		#{orderNum},
+		#{createUserId},
+		#{createTime},
+		#{updateUserId},
+		#{updateTime}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.skynet.system.bean.Esysmeudef">
+		update esysmeudef
+		<set>
+			<if test="parentId != null">`parent_id` = #{parentId}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="url != null">`url` = #{url}, </if>
+			<if test="perms != null">`perms` = #{perms}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="icon != null">`icon` = #{icon}, </if>
+			<if test="orderNum != null">`order_num` = #{orderNum}, </if>
+			<if test="createUserId != null">`create_user_id` = #{createUserId}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}</if>
+			<if test="updateUserId != null">`update_user_id` = #{updateUserId}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where menu_id = #{menuId}
+	</update>
+
+	<delete id="delete">
+		delete from esysmeudef where menu_id = #{value}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from esysmeudef where menu_id in
+		<foreach item="menuId" collection="array" open="(" separator=","
+			close=")">
+			#{menuId}
+		</foreach>
+	</delete>
+
+	<select id="listMenuByUserId" resultType="com.skynet.system.bean.Esysmeudef">
+		select distinct
+		m.menu_id , parent_id, name, url,
+		perms,`type`,icon,order_num,create_user_id,create_time,update_user_id,update_time
+		from esysmeudef m
+		left
+		join sys_role_menu rm on m.menu_id = rm.menu_id left join
+		esecuserol ur
+		on rm.role_id =ur.role_id where ur.user_id = #{id}
+		and
+		m.type in(0,1)
+		order by
+		m.order_num
+	</select>
+
+	<select id="listUserPerms" resultType="string">
+		select distinct m.perms
+		from esysmeudef m left join
+		sys_role_menu rm on m.menu_id = rm.menu_id
+		left join sys_user_role ur
+		on rm.role_id = ur.role_id where ur.user_id
+		= #{id}
+	</select>
+</mapper>

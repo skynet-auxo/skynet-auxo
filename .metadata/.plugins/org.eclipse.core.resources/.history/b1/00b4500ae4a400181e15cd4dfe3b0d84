@@ -1,0 +1,50 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserRoleDao.java 
+ * Package Name:com.skynet.system.dao 
+ * History
+ * Seq   Date        Developer      Description : User and Role Matching               
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.skynet.system.bean.Esecuserol;
+
+@Mapper
+public interface UserRoleDao {
+	
+	Esecuserol get(Long id);
+
+	List<Esecuserol> list(Map<String, Object> map);
+
+	int count(Map<String, Object> map);
+
+	int save(Esecuserol userRole);
+
+	int update(Esecuserol userRole);
+
+	int remove(Long id);
+
+	int batchRemove(Long[] ids);
+
+	List<Long> listRoleId(Long userId);
+
+	int removeByUserId(Long userId);
+
+	int removeByRoleId(Long roleId);
+
+	int batchSave(List<Esecuserol> list);
+
+	int batchRemoveByUserId(Long[] ids);
+
+}

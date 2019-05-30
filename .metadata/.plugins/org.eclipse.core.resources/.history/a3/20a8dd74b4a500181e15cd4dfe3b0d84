@@ -1,0 +1,113 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:ShiroConfig.java 
+ * Package Name:com.skynet.system.config 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月22日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :shiro配置类
+ * 
+ * ApacheShiro核心通过Filter来实现权限控制和拦截 , 就好像SpringMVC通过DispachServlet来主控制请求分发一样
+ * 既然是使用Filter , 即是通过URL规则来进行过滤和权限校验 , 所以我们需要定义一系列关于URL的规则和访问权限 
+ * 参考：https://www.codercto.com/a/14259.html
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */
+package com.skynet.system.config;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class ShiroConfig {
+
+//    @Value("${spring.redis.host}")
+//    private String host;
+//    @Value("${spring.redis.password}")
+//    private String password;
+//    @Value("${spring.redis.port}")
+//    private int port;
+//    @Value("${spring.redis.timeout}")
+//    private int timeout;
+//
+//    @Value("${spring.cache.type}")
+//    private String cacheType ;
+
+	@Value("${server.servlet.session.timeout}")
+	private int tomcatTimeout;
+
+	/**
+	 * 管理shiro的生命周期
+	 * 
+	 * @return
+	 */
+	@Bean
+	public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
+		return new LifecycleBeanPostProcessor();
+	}
+
+	/**
+	 * DefaultAdvisorAutoProxyCreator , Spring的一个bean , 由Advisor决定对哪些类的方法进行AOP代理
+	 * 
+	 * @return
+	 */
+	@Bean
+	@ConditionalOnMissingBean
+	public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+		DefaultAdvisorAutoProxyCreator defaultAap = new DefaultAdvisorAutoProxyCreator();
+		defaultAap.setProxyTargetClass(true);
+		return defaultAap;
+	}
+
+	@Bean
+	public ShiroFilterFactoryBean shiroFilterFactoryBean() {
+
+		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+		shiroFilterFactoryBean.setSecurityManager(securityManager);
+		// 不设置默认找web工程根目录下的login.jsp页面
+		shiroFilterFactoryBean.setLoginUrl("/login");
+		// 登录成功之后要跳转的连接
+		shiroFilterFactoryBean.setSuccessUrl("/index");
+		// 未授权跳转页面
+		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+		// 配置不需要权限访问的部分url
+		filterChainDefinitionMap.put("/login", "anon");
+		// 静态资源不要求权限 , 若有其他目录下文件(如js,img等)也依此设置
+		filterChainDefinitionMap.put("/css/**", "anon");
+		filterChainDefinitionMap.put("/js/**", "anon");
+		filterChainDefinitionMap.put("/fonts/**", "anon");
+		filterChainDefinitionMap.put("/img/**", "anon");
+		filterChainDefinitionMap.put("/docs/**", "anon");
+		filterChainDefinitionMap.put("/druid/**", "anon");
+		filterChainDefinitionMap.put("/upload/**", "anon");
+		filterChainDefinitionMap.put("/files/**", "anon");
+		filterChainDefinitionMap.put("/logout", "logout");
+		filterChainDefinitionMap.put("/", "anon");
+		filterChainDefinitionMap.put("/blog", "anon");
+		filterChainDefinitionMap.put("/blog/open/**", "anon");
+		// 需要登录访问的资源 , 一般将/**放在最下边
+		filterChainDefinitionMap.put("/**", "authc");
+//		// 自定义拦截器 , 多个filter的设置
+//		Map<String, Filter> filters = new LinkedHashMap<>();
+//		LogoutFilter logoutFilter = new LogoutFilter();// 限制同一帐号同时在线的个数。或单点登录等
+//		logoutFilter.setRedirectUrl("/login");
+//		filters.put("logout", null);
+//		shiroFilterFactoryBean.setFilters(filters);
+		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+		return shiroFilterFactoryBean;
+	}
+
+}

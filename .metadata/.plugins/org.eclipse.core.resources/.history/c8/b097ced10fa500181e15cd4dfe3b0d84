@@ -1,0 +1,78 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:FileServiceImpl.java 
+ * Package Name:com.skynet.common.service.imp 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.service.imp;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import com.skynet.common.bean.Esysfildef;
+import com.skynet.common.service.FileService;
+
+@Service
+public class FileServiceImpl implements FileService {
+
+	@Override
+	public Esysfildef get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Esysfildef> list(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int count(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int create(Esysfildef sysFile) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Esysfildef sysFile) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(Long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int batchDelete(Long[] ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Boolean isExist(String url) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,39 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserServiceImpl.java 
+ * Package Name:com.skynet.system.service.impl 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月23日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service.impl;
+
+import java.util.List;
+
+import com.skynet.system.bean.Esecusrdef;
+import com.skynet.system.service.UserService;
+
+/**
+ * @author Administrator
+ *
+ */
+public class UserServiceImpl implements UserService {
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.UserService#findAll()
+	 */
+	@Override
+	public List<Esecusrdef> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,41 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserDao.java 
+ * Package Name:com.skynet.system.dao 
+ * History
+ * Seq   Date        Developer      Description                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月20日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.skynet.system.bean.Esecusrdef;
+
+@Mapper
+public interface UserDao {
+	
+	Esecusrdef get(Long userId);
+	
+	List<Esecusrdef> list(Map<String,Object> map);
+	
+	int count(Map<String,Object> map);
+	
+	int save(Esecusrdef user);
+	
+	int update(Esecusrdef user);
+	
+	int remove(Long userId);
+	
+	int batchRemove(Long[] userIds);
+	
+	Long[] listAllDept();
+}

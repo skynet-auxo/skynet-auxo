@@ -1,0 +1,56 @@
+1534570844442	Delete element
+1534571288997	Copy file
+1534571302100	Rename resource 'application.properties'
+1534573893365	Delete element
+1534576129917	Delete elements
+1534576138058	Delete elements
+1534576148957	Delete element
+1534576182655	Delete element
+1534577148539	Delete elements
+1534577668961	Delete element
+1534578523456	Delete element
+1534579073959	Rename package 'com.bootdo.activiti.config'
+1534579096806	Rename package 'com.bootdo.activiti.controller'
+1534579107358	Rename package 'com.bootdo.activiti.dao'
+1534579118738	Rename package 'com.bootdo.common.aspect'
+1534579152143	Rename package 'com.bootdo.activiti.domain'
+1534579191696	Rename package 'com.bootdo.activiti.service'
+1534579209333	Rename package 'com.bootdo.activiti.service.impl'
+1534579219291	Rename package 'com.bootdo.activiti.utils'
+1534579229999	Rename package 'com.bootdo.common.controller'
+1534579238109	Rename package 'com.bootdo.common.listenner'
+1534579248720	Rename package 'com.bootdo.common.redis.shiro'
+1534579259835	Rename package 'com.bootdo.common.service'
+1534579272117	Rename package 'com.bootdo.common.service.impl'
+1534579283391	Rename package 'com.bootdo.common.quartz.factory'
+1534579294119	Rename package 'com.bootdo.oa.config'
+1534579302405	Rename package 'com.bootdo.oa.dao'
+1534579311792	Rename package 'com.bootdo.oa.service'
+1534579320788	Rename package 'com.bootdo.system.config'
+1534579330628	Rename package 'com.bootdo.oa.service.impl'
+1534579340263	Rename package 'com.bootdo.system.controller'
+1534579350233	Rename package 'com.bootdo.system.dao'
+1534579359088	Rename package 'com.bootdo.oa.controller'
+1534579368902	Rename package 'com.bootdo.system.shiro'
+1534579380260	Rename package 'com.bootdo.system.vo'
+1534579390013	Rename package 'com.bootdo.system.service.impl'
+1534579399254	Rename package 'com.bootdo.system.service'
+1534579407130	Rename package 'com.bootdo.system.filter'
+1534579415541	Rename package 'com.bootdo.system.domain'
+1534579426049	Rename package 'com.bootdo.oa.domain'
+1534579617259	Rename package 'com.bootdo.activiti.vo'
+1534579625034	Rename package 'com.bootdo.blog.controller'
+1534579636620	Rename package 'com.bootdo.blog.dao'
+1534579643341	Rename package 'com.bootdo.blog.domain'
+1534579652842	Rename package 'com.bootdo.blog.service'
+1534579660618	Rename package 'com.bootdo.blog.service.impl'
+1534579669403	Rename package 'com.bootdo.common.annotation'
+1534579682349	Rename package 'com.bootdo.common.config'
+1534579689741	Rename package 'com.bootdo.common.dao'
+1534579700901	Rename package 'com.bootdo.common.domain'
+1534579709463	Rename package 'com.bootdo.common.exception'
+1534579717847	Rename package 'com.bootdo.common.quartz.utils'
+1534579727234	Rename package 'com.bootdo.common.task'
+1534579740496	Rename package 'com.bootdo.common.utils'
+1534579750665	Rename package 'com.bootdo.common.utils.xss'
+1534580013934	Delete element

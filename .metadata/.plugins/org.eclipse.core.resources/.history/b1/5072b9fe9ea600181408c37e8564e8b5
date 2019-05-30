@@ -1,0 +1,45 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserService.java 
+ * Package Name:com.skynet.system.service 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月23日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.skynet.system.bean.Esecusrdef;
+
+/**
+ * @author Administrator
+ *
+ */
+public interface UserService {
+	
+	public List<Esecusrdef> findAll();
+	
+	/**
+	 * Get the user
+	 * @param id
+	 * @return
+	 */
+	public Esecusrdef getUser(Long id);
+	
+	/**
+	 * Get the list of user
+	 * @param map
+	 * @return
+	 */
+	public List<Esecusrdef> userList(Map<String, Object> map);
+}

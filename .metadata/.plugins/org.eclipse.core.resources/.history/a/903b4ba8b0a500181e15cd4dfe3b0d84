@@ -1,0 +1,91 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:AuthRealm.java 
+ * Package Name:com.skynet.system.shiro 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */
+package com.skynet.system.shiro;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.skynet.system.bean.Esecroldef;
+import com.skynet.system.bean.Esecusrdef;
+import com.skynet.system.service.UserService;
+
+/**
+ * @author Administrator
+ *
+ */
+public class AuthRealm extends AuthorizingRealm {
+
+    @Autowired
+    private UserService userService;
+    
+	/**
+	 * 授权
+	 */
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		// 获取session中的用户
+		Esecusrdef user = (Esecusrdef) principals.fromRealm(this.getClass().getName()).iterator().next();
+		List<String> permissions = new ArrayList<String>();
+		permissions.add(user.getUserId().toString());
+		
+		
+//		Set<Long> roles = (Set<Long>) user.getRoleIds();
+//		if (roles.size() > 0) {
+//			for (Long role : roles) {
+//				Set<Module> modules = role.getModules();
+//				if (modules.size() > 0) {
+//					for (Module module : modules) {
+//						permissions.add(module.getMname());
+//					}
+//				}
+//			}
+//		}
+		
+		
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		// 将权限放入shiro中.
+		info.addStringPermissions(permissions);
+		return info;
+	}
+
+	/**
+	 * 认证.登录
+	 * 用于验证登录用户的账号和密码；当用户登录时，shiro的过滤器会自动处理post请求；如果验证失败，该方法返回null或者异常（带返回message），
+	 * 跳转到login的post链接
+	 */
+	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        UsernamePasswordToken utoken=(UsernamePasswordToken) token;//获取用户输入的token
+        String username = utoken.getUsername();
+        Esecusrdef user = userService.findUserByUserName(username);
+      //放入shiro.调用CredentialsMatcher检验密码
+        return new SimpleAuthenticationInfo(user, user.getPassWord(),this.getClass().getName());
+	}
+
+}

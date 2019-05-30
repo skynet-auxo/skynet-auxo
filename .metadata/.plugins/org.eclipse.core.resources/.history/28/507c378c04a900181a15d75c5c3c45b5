@@ -1,0 +1,132 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:RoleController.java 
+ * Package Name:com.skynet.system.controller 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月26日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */
+package com.skynet.system.controller;
+
+import java.util.List;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.skynet.common.controller.AbstractBaseController;
+import com.skynet.common.utils.Result;
+import com.skynet.system.bean.Esecroldef;
+import com.skynet.system.service.RoleService;
+
+@RequestMapping("/sys/role")
+@Controller
+public class RoleController extends AbstractBaseController {
+	String prefix = "system/role";
+	@Autowired
+	RoleService roleService;
+
+	@RequiresPermissions("sys:role:role")
+	@RequestMapping()
+	String role() {
+		return prefix + "/role";
+	}
+
+	@RequiresPermissions("sys:role:role")
+	@RequestMapping("/list")
+	@ResponseBody()
+	List<Esecroldef> list() {
+		List<Esecroldef> roleList = roleService.list();
+		return roleList;
+	}
+
+//	@Log("添加角色")
+	@RequiresPermissions("sys:role:add")
+	@RequestMapping("/add")
+	String add() {
+		return prefix + "/add";
+	}
+
+//	@Log("编辑角色")
+	@RequiresPermissions("sys:role:edit")
+	@RequestMapping("/edit/{id}")
+	String edit(@PathVariable("id") Long id, Model model) {
+		Esecroldef esecroldef = roleService.get(id);
+		model.addAttribute("role", esecroldef);
+		return prefix + "/edit";
+	}
+
+//	@Log("保存角色")
+	@RequiresPermissions("sys:role:add")
+	@PostMapping("/save")
+	@ResponseBody()
+	Result create(Esecroldef esecroldef) {
+//		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+//			return Result.error(1, "演示系统不允许修改,完整体验请部署程序");
+//		}
+		if (roleService.create(esecroldef) > 0) {
+			return Result.success();
+		} else {
+			return Result.error(1, "保存失败");
+		}
+	}
+
+//	@Log("更新角色")
+	@RequiresPermissions("sys:role:edit")
+	@PostMapping("/update")
+	@ResponseBody()
+	Result update(Esecroldef role) {
+//		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+//			return Result.error(1, "演示系统不允许修改,完整体验请部署程序");
+//		}
+		if (roleService.update(role) > 0) {
+			return Result.success();
+		} else {
+			return Result.error(1, "保存失败");
+		}
+	}
+
+//	@Log("删除角色")
+	@RequiresPermissions("sys:role:remove")
+	@PostMapping("/remove")
+	@ResponseBody()
+	Result save(Long id) {
+//		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+//			return Result.error(1, "演示系统不允许修改,完整体验请部署程序");
+//		}
+		if (roleService.delete(id) > 0) {
+			return Result.success();
+		} else {
+			return Result.error(1, "删除失败");
+		}
+	}
+
+	@RequiresPermissions("sys:role:batchRemove")
+//	@Log("批量删除角色")
+	@PostMapping("/batchRemove")
+	@ResponseBody
+	Result batchRemove(@RequestParam("ids[]") Long[] ids) {
+//		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+//			return Result.error(1, "演示系统不允许修改,完整体验请部署程序");
+//		}
+		int r = roleService.batchDelete(ids);
+		if (r > 0) {
+			return Result.success();
+		}
+		return Result.error();
+	}
+}

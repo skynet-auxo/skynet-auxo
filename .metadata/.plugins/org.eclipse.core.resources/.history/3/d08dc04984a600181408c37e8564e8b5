@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.qiu.dao.EmpDao" >
+    <select id="findAll" resultType="cn.qiu.entity.Emp">
+        select name,sec sex,agg age,addre address from Person;
+    </select>
+
+</mapper>

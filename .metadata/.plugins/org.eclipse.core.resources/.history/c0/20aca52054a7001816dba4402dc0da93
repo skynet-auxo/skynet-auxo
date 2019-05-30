@@ -1,0 +1,60 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:DictService.java 
+ * Package Name:com.skynet.system.service 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月24日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :  Dictionary Table
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */
+package com.skynet.system.service;
+
+public interface DictService {
+	DictDO get(Long id);
+
+	List<DictDO> list(Map<String, Object> map);
+
+	int count(Map<String, Object> map);
+
+	int save(DictDO dict);
+
+	int update(DictDO dict);
+
+	int remove(Long id);
+
+	int batchRemove(Long[] ids);
+
+	List<DictDO> listType();
+
+	String getName(String type, String value);
+
+	/**
+	 * 获取爱好列表
+	 * 
+	 * @return
+	 * @param userDO
+	 */
+	List<DictDO> getHobbyList(UserDO userDO);
+
+	/**
+	 * 获取性别列表
+	 * 
+	 * @return
+	 */
+	List<DictDO> getSexList();
+
+	/**
+	 * 根据type获取数据
+	 * 
+	 * @param map
+	 * @return
+	 */
+	List<DictDO> listByType(String type);
+}

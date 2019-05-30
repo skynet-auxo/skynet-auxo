@@ -1,0 +1,112 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:DeptServiceImpl.java 
+ * Package Name:com.skynet.system.service.imp 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service.imp;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import com.skynet.common.bean.Tree;
+import com.skynet.system.bean.Esecdptdef;
+import com.skynet.system.service.DeptService;
+
+@Service
+public class DeptServiceImpl implements DeptService {
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#get(java.lang.Long)
+	 */
+	@Override
+	public Esecdptdef get(Long deptId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#list(java.util.Map)
+	 */
+	@Override
+	public List<Esecdptdef> list(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#count(java.util.Map)
+	 */
+	@Override
+	public int count(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#create(com.skynet.system.bean.Esecdptdef)
+	 */
+	@Override
+	public int create(Esecdptdef sysDept) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#update(com.skynet.system.bean.Esecdptdef)
+	 */
+	@Override
+	public int update(Esecdptdef sysDept) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#delete(java.lang.Long)
+	 */
+	@Override
+	public int delete(Long deptId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#batchRemove(java.lang.Long[])
+	 */
+	@Override
+	public int batchRemove(Long[] deptIds) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#getTree()
+	 */
+	@Override
+	public Tree<Esecdptdef> getTree() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.DeptService#checkDeptHasUser(java.lang.Long)
+	 */
+	@Override
+	public boolean checkDeptHasUser(Long deptId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

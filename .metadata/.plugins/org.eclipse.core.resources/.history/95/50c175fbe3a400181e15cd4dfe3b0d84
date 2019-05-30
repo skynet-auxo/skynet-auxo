@@ -1,0 +1,21 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserRoleDao.java 
+ * Package Name:com.skynet.system.dao 
+ * History
+ * Seq   Date        Developer      Description : User and Role Matching               
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface UserRoleDao {
+
+}

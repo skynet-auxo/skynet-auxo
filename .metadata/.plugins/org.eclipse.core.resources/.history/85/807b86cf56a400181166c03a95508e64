@@ -1,0 +1,22 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:MD5Utils.java 
+ * Package Name:com.skynet.common.utils 
+ * History
+ * Seq   Date        Developer      Description                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月20日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.utils;
+
+/**
+ * @author Administrator
+ *
+ */
+public class MD5Utils {
+
+}

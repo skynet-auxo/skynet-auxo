@@ -1,0 +1,28 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:RoleController.java 
+ * Package Name:com.skynet.system.controller 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月26日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.skynet.common.controller.AbstractBaseController;
+
+@RequestMapping("/sys/role")
+@Controller
+public class RoleController extends AbstractBaseController {
+
+}

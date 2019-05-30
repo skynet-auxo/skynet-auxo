@@ -1,0 +1,56 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:BDSessionListener.java 
+ * Package Name:com.skynet.system.config 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月22日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.config;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.SessionListener;
+
+/**
+ * @author Administrator
+ *
+ */
+public class BDSessionListener implements SessionListener {
+
+	private final AtomicInteger sessionCount = new AtomicInteger(0);
+	
+	@Override
+	public void onStart(Session session) {
+		sessionCount.incrementAndGet();
+	}
+
+	@Override
+	public void onStop(Session session) {
+		sessionCount.decrementAndGet();
+	}
+
+	@Override
+	public void onExpiration(Session session) {
+		sessionCount.decrementAndGet();
+	}
+
+	/**
+	 * @return the sessionCount
+	 */
+	public int getSessionCount() {
+		return sessionCount.get();
+	}
+	
+	
+
+}

@@ -1,0 +1,27 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:Query.java 
+ * Package Name:com.skynet.common.utils 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月24日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.utils;
+
+import java.util.LinkedHashMap;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Query extends LinkedHashMap<K, V> {
+
+}

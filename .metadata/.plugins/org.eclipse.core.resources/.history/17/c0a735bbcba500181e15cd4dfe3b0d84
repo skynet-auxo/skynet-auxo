@@ -1,0 +1,36 @@
+/**  
+* @Title: ShiroRealm.java  
+* @Package com.bootdo.system.shiro  
+* @Description: TODO(用一句话描述该文件做什么)  
+* @author zero_li  
+* @date 2018年8月22日  
+* @version V1.0  
+*/
+package com.bootdo.system.shiro;
+
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
+
+public class ShiroRealm extends AuthorizingRealm {
+
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 登录认证 一般情况下 , 登录成功之后就给当前用户进行权限赋予了，根据用户的权限信息做授权判断，这一步是以doGetAuthenticationInfo为基础的，
+	 * 只有在有用户信息后才能根据用户的角色和授权信息做判断是否给用户授权，因此这里的Roles和Permissions是用户的两个重点判断依据 
+	 */
+	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

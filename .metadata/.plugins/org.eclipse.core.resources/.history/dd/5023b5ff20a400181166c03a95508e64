@@ -1,0 +1,38 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:DruidDataSourceConfiguration.java 
+ * Package Name:com.skyne.common 
+ * History
+ * Seq   Date        Developer      Description                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月18日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common;
+
+import javax.sql.DataSource;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.alibaba.druid.pool.DruidDataSource;
+
+@Configuration
+public class DruidDataSourceConfiguration {
+	
+	/**
+	 * @ConfigurationProperties 配置好数据源，spring.datasource开头相关的参数会自动赋值到datasource里
+	 * @return
+	 */
+	@Bean
+	@ConfigurationProperties(prefix = "spring.datasource")
+	public DataSource druidDataSource() {
+		DruidDataSource druidDataSource = new DruidDataSource();
+		return druidDataSource;
+	}
+
+}

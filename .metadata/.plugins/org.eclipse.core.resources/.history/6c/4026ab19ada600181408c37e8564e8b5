@@ -1,0 +1,183 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:MenuServiceImpl.java 
+ * Package Name:com.skynet.system.service.imp 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月22日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */
+package com.skynet.system.service.imp;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.skynet.common.bean.Tree;
+import com.skynet.common.utils.BuildTree;
+import com.skynet.system.bean.Esysmeudef;
+import com.skynet.system.dao.MenuDao;
+import com.skynet.system.dao.RoleMenuDao;
+import com.skynet.system.service.MenuService;
+
+@Service
+@Transactional(readOnly = true, rollbackFor = Exception.class)
+public class MenuServiceImpl implements MenuService {
+
+	@Autowired
+	MenuDao menuMapper;
+	@Autowired
+	RoleMenuDao roleMenuMapper;
+
+//	@Cacheable
+	@Override
+	public Tree<Esysmeudef> getSysMenuTree(Long id) {
+		List<Tree<Esysmeudef>> trees = new ArrayList<Tree<Esysmeudef>>();
+		List<Esysmeudef> menuDOs = menuMapper.listMenuByUserId(id);
+		for (Esysmeudef sysMenuDO : menuDOs) {
+			Tree<Esysmeudef> tree = new Tree<Esysmeudef>();
+			tree.setId(sysMenuDO.getMenuId().toString());
+			tree.setParentId(sysMenuDO.getParentId().toString());
+			tree.setText(sysMenuDO.getName());
+			Map<String, Object> attributes = new HashMap<>(16);
+			attributes.put("url", sysMenuDO.getUrl());
+			attributes.put("icon", sysMenuDO.getIcon());
+			tree.setAttributes(attributes);
+			trees.add(tree);
+		}
+		// 默认顶级菜单为０，根据数据库实际情况调整
+		Tree<Esysmeudef> t = BuildTree.build(trees);
+		return t;
+	}
+
+	@Override
+	public List<Tree<Esysmeudef>> listMenuTree(Long id) {
+		List<Tree<Esysmeudef>> trees = new ArrayList<Tree<Esysmeudef>>();
+		List<Esysmeudef> menuList = menuMapper.listMenuByUserId(id);
+		for (Esysmeudef esysmeudef : menuList) {
+			Tree<Esysmeudef> tree = new Tree<Esysmeudef>();
+			tree.setId(esysmeudef.getMenuId().toString());
+			tree.setParentId(esysmeudef.getParentId().toString());
+			tree.setText(esysmeudef.getName());
+			Map<String, Object> attributes = new HashMap<>(16);
+			attributes.put("url", esysmeudef.getUrl());
+			attributes.put("icon", esysmeudef.getIcon());
+			tree.setAttributes(attributes);
+			trees.add(tree);
+		}
+		// 默认顶级菜单为０，根据数据库实际情况调整
+		List<Tree<Esysmeudef>> list = BuildTree.buildList(trees, "0");
+		return list;
+	}
+
+	@Override
+	public Tree<Esysmeudef> getTree() {
+		List<Tree<Esysmeudef>> trees = new ArrayList<Tree<Esysmeudef>>();
+		List<Esysmeudef> menuList = menuMapper.list(new HashMap<>(16));
+		for (Esysmeudef esysmeudef : menuList) {
+			Tree<Esysmeudef> tree = new Tree<Esysmeudef>();
+			tree.setId(esysmeudef.getMenuId().toString());
+			tree.setParentId(esysmeudef.getParentId().toString());
+			tree.setText(esysmeudef.getName());
+			trees.add(tree);
+		}
+		// 默认顶级菜单为０，根据数据库实际情况调整
+		Tree<Esysmeudef> tree = BuildTree.build(trees);
+		return tree;
+	}
+
+	@Override
+	public Tree<Esysmeudef> getTree(Long id) {
+		// 根据roleId查询权限
+		List<Esysmeudef> menus = menuMapper.list(new HashMap<String, Object>(16));
+		List<Long> menuIds = roleMenuMapper.listMenuIdByRoleId(id);
+		List<Long> temp = menuIds;
+		for (Esysmeudef menu : menus) {
+			if (temp.contains(menu.getParentId())) {
+				menuIds.remove(menu.getParentId());
+			}
+		}
+		List<Tree<Esysmeudef>> trees = new ArrayList<Tree<Esysmeudef>>();
+		List<Esysmeudef> menuList = menuMapper.list(new HashMap<String, Object>(16));
+		for (Esysmeudef esysmeudef : menuList) {
+			Tree<Esysmeudef> tree = new Tree<Esysmeudef>();
+			tree.setId(esysmeudef.getMenuId().toString());
+			tree.setParentId(esysmeudef.getParentId().toString());
+			tree.setText(esysmeudef.getName());
+			Map<String, Object> state = new HashMap<>(16);
+			Long menuId = esysmeudef.getMenuId();
+			if (menuIds.contains(menuId)) {
+				state.put("selected", true);
+			} else {
+				state.put("selected", false);
+			}
+			tree.setState(state);
+			trees.add(tree);
+		}
+		// 默认顶级菜单为０，根据数据库实际情况调整
+		Tree<Esysmeudef> tree = BuildTree.build(trees);
+		return tree;
+	}
+
+	@Override
+	public List<Esysmeudef> list(Map<String, Object> params) {
+		List<Esysmeudef> menus = menuMapper.list(params);
+		return menus;
+	}
+
+	@Transactional(readOnly = false, rollbackFor = Exception.class)
+	@Override
+	public int create(Esysmeudef menu) {
+		int result = menuMapper.create(menu);
+		return result;
+	}
+
+	@Transactional(readOnly = false, rollbackFor = Exception.class)
+	@Override
+	public int update(Esysmeudef menu) {
+		int result = menuMapper.update(menu);
+		return result;
+	}
+
+	@Transactional(readOnly = false, rollbackFor = Exception.class)
+	@Override
+	public int delete(Long id) {
+		int result = menuMapper.delete(id);
+		return result;
+	}
+
+	@Override
+	public Esysmeudef get(Long id) {
+		Esysmeudef esysmeudef = menuMapper.get(id);
+		return esysmeudef;
+	}
+
+	@Override
+	public Set<String> listPerms(Long userId) {
+		List<String> perms = menuMapper.listUserPerms(userId);
+		Set<String> permsSet = new HashSet<>();
+		for (String perm : perms) {
+			if (StringUtils.isNotBlank(perm)) {
+				permsSet.addAll(Arrays.asList(perm.trim().split(",")));
+			}
+		}
+		return permsSet;
+	}
+
+}

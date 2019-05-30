@@ -1,0 +1,63 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserService.java 
+ * Package Name:com.skynet.system.service 
+ * History
+ * Seq   Date        Developer      Description                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月20日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.skynet.common.bean.Tree;
+import com.skynet.system.bean.Esecusrdef;
+
+public interface UserService {
+	Esecusrdef get(Long id);
+
+	List<Esecusrdef> list(Map<String, Object> map);
+
+	int count(Map<String, Object> map);
+
+	int save(Esecusrdef user);
+
+	int update(Esecusrdef user);
+
+	int remove(Long userId);
+
+	int batchremove(Long[] userIds);
+
+	boolean exit(Map<String, Object> params);
+
+	Set<String> listRoles(Long userId);
+
+	int resetPwd(Esecusrdef userVO,Esecusrdef userDO) throws Exception;
+	
+	int adminResetPwd(Esecusrdef userVO) throws Exception;
+	
+	Tree<Esecusrdef> getTree();
+
+	/**
+	 * 更新个人信息
+	 * @param userDO
+	 * @return
+	 */
+	int updatePersonal(UserDO userDO);
+
+	/**
+	 * 更新个人图片
+	 * @param file 图片
+	 * @param avatar_data 裁剪信息
+	 * @param userId 用户ID
+	 * @throws Exception
+	 */
+    Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, Long userId) throws Exception;
+}

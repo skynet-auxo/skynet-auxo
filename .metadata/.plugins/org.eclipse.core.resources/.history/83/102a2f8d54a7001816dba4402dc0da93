@@ -1,0 +1,104 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:DictServiceImpl.java 
+ * Package Name:com.skynet.common.service.impl 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月24日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import com.skynet.common.bean.Egcmdicdef;
+import com.skynet.common.service.DictService;
+import com.skynet.system.bean.Esecusrdef;
+
+/**
+ * @author Administrator
+ *
+ */
+public class DictServiceImpl implements DictService {
+
+	@Override
+	public Egcmdicdef get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Egcmdicdef> list(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int count(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int save(Egcmdicdef dict) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(Egcmdicdef dict) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int remove(Long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int batchRemove(Long[] ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Egcmdicdef> listType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName(String type, String value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Egcmdicdef> getHobbyList(Esecusrdef user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Egcmdicdef> getSexList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Egcmdicdef> listByType(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

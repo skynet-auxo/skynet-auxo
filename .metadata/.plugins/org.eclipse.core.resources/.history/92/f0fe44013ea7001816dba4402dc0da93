@@ -1,0 +1,93 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:RoleServiceImpl.java 
+ * Package Name:com.skynet.system.service.impl 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月24日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service.impl;
+
+import java.util.List;
+
+import com.skynet.system.bean.Esecroldef;
+import com.skynet.system.service.RoleService;
+
+/**
+ * @author Administrator
+ *
+ */
+public class RoleServiceImpl implements RoleService {
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.RoleService#get(java.lang.Long)
+	 */
+	@Override
+	public Esecroldef get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.RoleService#list()
+	 */
+	@Override
+	public List<Esecroldef> list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.RoleService#create(com.skynet.system.bean.Esecroldef)
+	 */
+	@Override
+	public int create(Esecroldef role) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.RoleService#update(com.skynet.system.bean.Esecroldef)
+	 */
+	@Override
+	public int update(Esecroldef role) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.RoleService#delete(java.lang.Long)
+	 */
+	@Override
+	public int delete(Long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.RoleService#list(java.lang.Long)
+	 */
+	@Override
+	public List<Esecroldef> list(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.RoleService#batchDelete(java.lang.Long[])
+	 */
+	@Override
+	public int batchDelete(Long[] ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,26 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:FileController.java 
+ * Package Name:com.skynet.common.controller 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月26日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping("/common/sysFile")
+@Controller
+public class FileController extends AbstractBaseController {
+
+}

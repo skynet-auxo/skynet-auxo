@@ -1,0 +1,123 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:MenuServiceImpl.java 
+ * Package Name:com.skynet.system.service.imp 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月22日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service.imp;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import com.skynet.common.bean.Tree;
+import com.skynet.system.bean.Esysmeudef;
+import com.skynet.system.service.MenuService;
+
+/**
+ * @author Administrator
+ *
+ */
+public class MenuServiceImpl implements MenuService {
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#getSysMenuTree(java.lang.Long)
+	 */
+	@Override
+	public Tree<Esysmeudef> getSysMenuTree(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#listMenuTree(java.lang.Long)
+	 */
+	@Override
+	public List<Tree<Esysmeudef>> listMenuTree(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#getTree()
+	 */
+	@Override
+	public Tree<Esysmeudef> getTree() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#getTree(java.lang.Long)
+	 */
+	@Override
+	public Tree<Esysmeudef> getTree(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#list(java.util.Map)
+	 */
+	@Override
+	public List<Esysmeudef> list(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#create(com.skynet.system.bean.Esysmeudef)
+	 */
+	@Override
+	public int create(Esysmeudef menu) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#update(com.skynet.system.bean.Esysmeudef)
+	 */
+	@Override
+	public int update(Esysmeudef menu) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#delete(java.lang.Long)
+	 */
+	@Override
+	public int delete(Long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#get(java.lang.Long)
+	 */
+	@Override
+	public Esysmeudef get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.system.service.MenuService#listPerms(java.lang.Long)
+	 */
+	@Override
+	public Set<String> listPerms(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

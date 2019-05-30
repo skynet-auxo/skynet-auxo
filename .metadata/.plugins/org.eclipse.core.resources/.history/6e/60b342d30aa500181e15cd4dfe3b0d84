@@ -1,0 +1,46 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:Esysfildef.java 
+ * Package Name:com.skynet.common.bean 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.bean;
+
+import java.sql.Timestamp;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Esysfildef extends BaseObject {
+	/**
+	 * file id
+	 */
+    private Long id;
+    /**
+     * file type
+     */
+    private Integer type;
+    /**
+     * file rul
+     */
+    private String url;
+    
+	private Long createUserId;
+	
+	private Timestamp createTime;
+	
+	private Long updateUserId;
+	
+	private Timestamp updateTime;
+}

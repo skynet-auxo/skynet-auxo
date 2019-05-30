@@ -1,0 +1,39 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:DictDao.java 
+ * Package Name:com.skynet.common.dao 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月24日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface DictDao {
+
+	public DictDO get(Long id);
+
+	public List<DictDO> list(Map<String, Object> map);
+
+	public int count(Map<String, Object> map);
+
+	public int save(DictDO dict);
+
+	public int update(DictDO dict);
+
+	public int remove(Long id);
+
+	public int batchRemove(Long[] ids);
+
+	public List<DictDO> listType();
+}

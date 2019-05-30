@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.skynet.system.dao.UserDao" >
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.skynet.system.bean.Esecusrdef">
+		<id column="user_id" property="userId" />
+		<result column="user_name" property="userName" />
+		<result column="user_desc" property=userDesc" />
+		<result column="pass_word" property="passWord" />
+		<result column="dept_id" property="mainPersonMobile" />
+		<result column="email" property="safePerson" />
+		<result column="mobile" property="safePersonMobile" />
+		<result column="status" property="createTime" />
+		<result column="create_user_id" property="updateTime" />
+		<result column="create_time" property="createUser" />
+		<result column="update_user_id" property="updateUser" />
+		<result column="update_time" property="industryName" />
+		<result column="sex" property="areaCode" />
+		<result column="birth" property="riskModel" />
+		<result column="pic_id" property="riskModel" />
+		<result column="live_address" property="riskModel" />
+		<result column="hobby" property="riskModel" />
+		<result column="province" property="riskModel" />
+		<result column="city" property="riskModel" />
+		<result column="district" property="riskModel" />
+	</resultMap>
+	
+    <select id="findAll" resultType="com.skynet.system.bean.Esecusrdef">
+        select * from esecusrdef;
+    </select>
+
+</mapper>

@@ -1,0 +1,90 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:ImageUtils.java 
+ * Package Name:com.skynet.common.utils 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description : Image operation class
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */
+package com.skynet.common.utils;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
+import java.util.Iterator;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+
+import org.springframework.web.multipart.MultipartFile;
+
+/**
+ * @author Administrator
+ *
+ */
+public class ImageUtils {
+
+	/**
+	 * Cut image
+	 * @param file picture
+	 * @param x 起点横坐标
+	 * @param y 纵坐标
+	 * @param w width
+	 * @param h high
+	 * @param prefix
+	 * @return
+	 */
+	public static BufferedImage cutImage(MultipartFile file, int x, int y, int w, int h, String prefix) {
+
+		Iterator<?> iterator = ImageIO.getImageReadersByFormatName(prefix);
+		try {
+			ImageReader reader = (ImageReader) iterator.next();
+			// 转换成输入流
+			InputStream in = file.getInputStream();
+			ImageInputStream iis = ImageIO.createImageInputStream(in);
+			reader.setInput(iis, true);
+			ImageReadParam param = reader.getDefaultReadParam();
+			Rectangle rect = new Rectangle(x, y, w, h);
+			param.setSourceRegion(rect);
+			BufferedImage bi = reader.read(0, param);
+			return bi;
+		} catch (Exception ignored) {
+		}
+		return null;
+	}
+
+	/**
+	 * The image rotates at the specified angle
+	 * @param bufferedimage  图像
+	 * @param angle   角度
+	 * @return
+	 */
+	public static BufferedImage rotateImage(BufferedImage bufferedimage, int angle) {
+		int w = bufferedimage.getWidth();
+		int h = bufferedimage.getHeight();
+		int type = bufferedimage.getColorModel().getTransparency();
+		BufferedImage img;
+		Graphics2D graphics2d;
+		(graphics2d = (img = new BufferedImage(w, h, type)).createGraphics())
+				.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		graphics2d.setPaint(Color.WHITE);
+		graphics2d.fillRect(0, 0, w, h);
+		graphics2d.rotate(Math.toRadians(angle), w / 2, h / 2);
+		graphics2d.drawImage(bufferedimage, 0, 0, Color.WHITE, null);
+		graphics2d.dispose();
+		return img;
+	}
+}

@@ -1,0 +1,37 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:DeptService.java 
+ * Package Name:com.skynet.system.service 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service;
+
+public interface DeptService {
+	public DeptDO get(Long deptId);
+	
+	public List<DeptDO> list(Map<String, Object> map);
+	
+	public int count(Map<String, Object> map);
+	
+	public int save(DeptDO sysDept);
+	
+	public int update(DeptDO sysDept);
+	
+	public int remove(Long deptId);
+	
+	public int batchRemove(Long[] deptIds);
+
+	public Tree<DeptDO> getTree();
+	
+	public boolean checkDeptHasUser(Long deptId);
+}

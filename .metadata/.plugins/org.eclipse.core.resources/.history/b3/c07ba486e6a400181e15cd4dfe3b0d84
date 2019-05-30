@@ -1,0 +1,23 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:FileType.java 
+ * Package Name:com.skynet.common.utils 
+ * History
+ * Seq   Date        Developer      email                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi        343077359@qq.com
+ *
+ * Function Description : Judge type by file name   
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.utils;
+
+/**
+ * @author Administrator
+ *
+ */
+public class FileType {
+
+}

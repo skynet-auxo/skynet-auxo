@@ -1,0 +1,24 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:AbstractBaseController.java 
+ * Package Name:com.skynet.common.controller 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public abstract class AbstractBaseController {
+
+}

@@ -1,0 +1,40 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:SkynetConfig.java 
+ * Package Name:com.skynet.common.config 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
+@Component
+@ConfigurationProperties(prefix="skynet")
+//@Configuration
+//@ComponentScan(basePackages={"cn.com.temsis.*"})
+public class SkynetConfig {
+	
+	public static SkynetConfig Instance;
+	
+	/**
+	 * Upload path
+	 */
+//	@Value("${SKYNET_UPLOAD_PATH}")
+	private String uploadPath;
+
+}

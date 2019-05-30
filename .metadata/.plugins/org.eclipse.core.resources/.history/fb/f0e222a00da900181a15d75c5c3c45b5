@@ -1,0 +1,179 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:FileController.java 
+ * Package Name:com.skynet.common.controller 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月26日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */
+package com.skynet.common.controller;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.skynet.common.bean.Esysfildef;
+import com.skynet.common.config.SkynetConfig;
+import com.skynet.common.service.FileService;
+import com.skynet.common.utils.FileType;
+import com.skynet.common.utils.FileUtil;
+import com.skynet.common.utils.PageUtils;
+import com.skynet.common.utils.Query;
+import com.skynet.common.utils.Result;
+
+@RequestMapping("/common/sysFile")
+@Controller
+public class FileController extends AbstractBaseController {
+	@Autowired
+	private FileService sysFileService;
+
+	@Autowired
+	private SkynetConfig bootdoConfig;
+
+	@RequestMapping()
+	@RequiresPermissions("common:sysFile:sysFile")
+	String sysFile(Model model) {
+		Map<String, Object> params = new HashMap<>(16);
+		return "common/file/file";
+	}
+
+	@ResponseBody
+	@RequestMapping("/list")
+	@RequiresPermissions("common:sysFile:sysFile")
+	public PageUtils list(@RequestParam Map<String, Object> params) {
+		// 查询列表数据
+		Query query = new Query(params);
+		List<Esysfildef> sysFileList = sysFileService.list(query);
+		int total = sysFileService.count(query);
+		PageUtils pageUtils = new PageUtils(sysFileList, total);
+		return pageUtils;
+	}
+
+	@RequestMapping("/add")
+	// @RequiresPermissions("common:bComments")
+	String add() {
+		return "common/sysFile/add";
+	}
+
+	@RequestMapping("/edit")
+	// @RequiresPermissions("common:bComments")
+	String edit(Long id, Model model) {
+		Esysfildef sysFile = sysFileService.get(id);
+		model.addAttribute("sysFile", sysFile);
+		return "common/sysFile/edit";
+	}
+
+	/**
+	 * 信息
+	 */
+	@RequestMapping("/info/{id}")
+	@RequiresPermissions("common:info")
+	public Result info(@PathVariable("id") Long id) {
+		Esysfildef sysFile = sysFileService.get(id);
+		return Result.success().put("sysFile", sysFile);
+	}
+
+	/**
+	 * 保存
+	 */
+	@ResponseBody
+	@PostMapping("/save")
+	@RequiresPermissions("common:save")
+	public Result save(Esysfildef sysFile) {
+		if (sysFileService.create(sysFile) > 0) {
+			return Result.success();
+		}
+		return Result.error();
+	}
+
+	/**
+	 * 修改
+	 */
+	@RequestMapping("/update")
+	@RequiresPermissions("common:update")
+	public Result update(@RequestBody Esysfildef sysFile) {
+		sysFileService.update(sysFile);
+
+		return Result.success();
+	}
+
+	/**
+	 * 删除
+	 */
+	@PostMapping("/remove")
+	@ResponseBody
+	// @RequiresPermissions("common:remove")
+	public Result remove(Long id, HttpServletRequest request) {
+		if ("test".equals(getUsername())) {
+			return Result.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		String fileName = bootdoConfig.getUploadPath() + sysFileService.get(id).getUrl().replace("/files/", "");
+		if (sysFileService.delete(id) > 0) {
+			boolean b = FileUtil.deleteFile(fileName);
+			if (!b) {
+				return Result.error("数据库记录删除成功，文件删除失败");
+			}
+			return Result.success();
+		} else {
+			return Result.error();
+		}
+	}
+
+	/**
+	 * 删除
+	 */
+	@PostMapping("/batchRemove")
+	@ResponseBody
+	@RequiresPermissions("common:remove")
+	public Result remove(@RequestParam("ids[]") Long[] ids) {
+		if ("test".equals(getUsername())) {
+			return Result.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		sysFileService.batchDelete(ids);
+		return Result.success();
+	}
+
+	@ResponseBody
+	@PostMapping("/upload")
+	Result upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		if ("test".equals(getUsername())) {
+			return Result.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		String fileName = file.getOriginalFilename();
+		fileName = FileUtil.renameToUUID(fileName);
+		Esysfildef sysFile = new Esysfildef(FileType.fileType(fileName), "/files/" + fileName, getUserId(), new Date(), getUserId(), new Date());
+		try {
+			FileUtil.uploadFile(file.getBytes(), bootdoConfig.getUploadPath(), fileName);
+		} catch (Exception e) {
+			return Result.error();
+		}
+
+		if (sysFileService.create(sysFile) > 0) {
+			return Result.success().put("fileName", sysFile.getUrl());
+		}
+		return Result.error();
+	}
+}

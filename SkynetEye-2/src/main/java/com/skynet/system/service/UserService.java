@@ -1,0 +1,135 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserService.java 
+ * Package Name:com.skynet.system.service 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月23日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.service;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.skynet.common.bean.Tree;
+import com.skynet.system.bean.Esecdptdef;
+import com.skynet.system.bean.Esecusrdef;
+import com.skynet.system.bean.subtype.EsecusrdefC;
+
+public interface UserService {
+	
+	public List<Esecusrdef> findAll();
+	
+	/**
+	 * Get the user
+	 * @param id
+	 * @return
+	 */
+	public Esecusrdef getUser(Long id);
+	
+	/**
+	 * Get the list of user
+	 * @param map
+	 * @return
+	 */
+	public List<Esecusrdef> userList(Map<String, Object> map);
+	
+	/**
+	 * Get total number of users
+	 * @param map
+	 * @return
+	 */
+	public int count(Map<String, Object> map);
+
+	/**
+	 * create a new user
+	 * @param user
+	 * @return
+	 */
+	public int create(Esecusrdef user);
+
+	/**
+	 * update a user
+	 * @param user
+	 * @return
+	 */
+	public int update(Esecusrdef user);
+
+	/**
+	 * delete a user
+	 * @param userId
+	 * @return
+	 */
+	public int delete(Long userId);
+
+	/**
+	 * Batch delete users
+	 * @param userIds
+	 * @return
+	 */
+	public int batchDelete(Long[] userIds);
+
+	/**
+	 * Check the user is exit
+	 * @param params
+	 * @return
+	 */
+	public boolean exit(Map<String, Object> params);
+
+	/**
+	 * Get the list of roles
+	 * @param userId
+	 * @return
+	 */
+	public Set<String> listRoles(Long userId);
+
+	/**
+	 * Reset the password
+	 * @param userC
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int resetPwd(EsecusrdefC userC,Esecusrdef user) throws Exception;
+	
+	/**
+	 * Admin reset password
+	 * @param userC
+	 * @return
+	 * @throws Exception
+	 */
+	public int adminResetPwd(EsecusrdefC userC) throws Exception;
+	
+	/**
+	 * Get the tree of department
+	 * @return
+	 */
+	public Tree<Esecdptdef> getTree();
+
+	/**
+	 * Update Personal information
+	 * @param userDO
+	 * @return
+	 */
+	public int updatePersonal(Esecusrdef user);
+
+	/**
+	 * Update Personal Picture
+	 * @param file 图片
+	 * @param avatar_data 裁剪信息
+	 * @param userId 
+	 * @throws Exception
+	 */
+	public Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, Long userId) throws Exception;
+}

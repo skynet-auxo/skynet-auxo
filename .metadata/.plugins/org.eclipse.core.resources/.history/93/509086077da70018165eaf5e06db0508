@@ -1,0 +1,25 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:DeptController.java 
+ * Package Name:com.skynet.system.controller 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月24日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description : 部门管理
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.controller;
+
+import com.skynet.common.controller.AbstractBaseController;
+
+@Controller
+@RequestMapping("/system/sysDept")
+public class DeptController extends AbstractBaseController {
+
+}

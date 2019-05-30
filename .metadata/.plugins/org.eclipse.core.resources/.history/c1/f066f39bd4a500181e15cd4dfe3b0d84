@@ -1,0 +1,40 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:MenuDao.java 
+ * Package Name:com.skynet.system.dao 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月22日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.system.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface MenuDao {
+	public MenuDO get(Long menuId);
+	
+	public List<MenuDO> list(Map<String,Object> map);
+	
+	public int count(Map<String,Object> map);
+	
+	public int save(MenuDO menu);
+	
+	public int update(MenuDO menu);
+	
+	public int remove(Long menuId);
+	
+	public int batchRemove(Long[] menuIds);
+	
+	public List<MenuDO> listMenuByUserId(Long id);
+	
+	public List<String> listUserPerms(Long id);
+}

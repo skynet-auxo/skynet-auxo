@@ -1,0 +1,103 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:FileServiceImpl.java 
+ * Package Name:com.skynet.common.service.imp 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月21日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.service.imp;
+
+import java.util.List;
+import java.util.Map;
+
+import com.skynet.common.bean.Esysfildef;
+import com.skynet.common.service.FileService;
+
+/**
+ * @author Administrator
+ *
+ */
+public class FileServiceImpl implements FileService {
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.FileService#get(java.lang.Long)
+	 */
+	@Override
+	public Esysfildef get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.FileService#list(java.util.Map)
+	 */
+	@Override
+	public List<Esysfildef> list(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.FileService#count(java.util.Map)
+	 */
+	@Override
+	public int count(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.FileService#create(com.skynet.common.bean.Esysfildef)
+	 */
+	@Override
+	public int create(Esysfildef sysFile) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.FileService#update(com.skynet.common.bean.Esysfildef)
+	 */
+	@Override
+	public int update(Esysfildef sysFile) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.FileService#delete(java.lang.Long)
+	 */
+	@Override
+	public int delete(Long id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.FileService#batchDelete(java.lang.Long[])
+	 */
+	@Override
+	public int batchDelete(Long[] ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.skynet.common.service.FileService#isExist(java.lang.String)
+	 */
+	@Override
+	public Boolean isExist(String url) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

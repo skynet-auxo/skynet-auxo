@@ -1,0 +1,247 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:UserController.java 
+ * Package Name:com.skynet.system.controller 
+ * History
+ * Seq   Date        Developer     email                   
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月23日    zeroLi       343077359@qq.com
+ *
+ *
+ * Fcuntion Description :
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */
+package com.skynet.system.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.skynet.common.bean.Tree;
+import com.skynet.common.controller.AbstractBaseController;
+import com.skynet.common.utils.MD5Utils;
+import com.skynet.common.utils.Result;
+import com.skynet.system.bean.Esecdptdef;
+import com.skynet.system.bean.Esecroldef;
+import com.skynet.system.bean.Esecusrdef;
+import com.skynet.system.bean.subtype.EsecusrdefC;
+import com.skynet.system.service.UserService;
+
+@RequestMapping("/sys/user")
+@Controller
+public class UserController extends AbstractBaseController{
+	private String prefix = "system/user";
+	@Autowired
+	UserService userService;
+	@Autowired
+	RoleService roleService;
+	@Autowired
+	DictService dictService;
+
+	@RequiresPermissions("sys:user:user")
+	@RequestMapping("")
+	String user(Model model) {
+		return prefix + "/user";
+	}
+
+	@RequestMapping("/list")
+	@ResponseBody
+	PageUtils list(@RequestParam Map<String, Object> params) {
+		// 查询列表数据
+		Query query = new Query(params);
+		List<Esecusrdef> sysUserList = userService.list(query);
+		int total = userService.count(query);
+		PageUtils pageUtil = new PageUtils(sysUserList, total);
+		return pageUtil;
+	}
+
+	@RequiresPermissions("sys:user:add")
+	@RequestMapping("/add")
+	String add(Model model) {
+		List<Esecroldef> roles = roleService.list();
+		model.addAttribute("roles", roles);
+		return prefix + "/add";
+	}
+
+	@RequiresPermissions("sys:user:edit")
+	@GetMapping("/edit/{id}")
+	String edit(Model model, @PathVariable("id") Long id) {
+		Esecusrdef esecusrdef = userService.getUser(id);
+		model.addAttribute("user", esecusrdef);
+		List<Esecroldef> roles = roleService.list(id);
+		model.addAttribute("roles", roles);
+		return prefix + "/edit";
+	}
+
+	@RequiresPermissions("sys:user:add")
+	@PostMapping("/save")
+	@ResponseBody
+	R save(Esecusrdef user) {
+		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		user.setPassWord(MD5Utils.encrypt(user.getUserName(), user.getPassWord()));
+		if (userService.create(user) > 0) {
+			return R.ok();
+		}
+		return R.error();
+	}
+
+	@RequiresPermissions("sys:user:edit")
+	@PostMapping("/update")
+	@ResponseBody
+	R update(Esecusrdef user) {
+		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+			return Result.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		if (userService.update(user) > 0) {
+			return R.ok();
+		}
+		return R.error();
+	}
+
+	@RequiresPermissions("sys:user:edit")
+	@PostMapping("/updatePeronal")
+	@ResponseBody
+	R updatePeronal(Esecusrdef user) {
+		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		if (userService.updatePersonal(user) > 0) {
+			return R.ok();
+		}
+		return R.error();
+	}
+
+	@RequiresPermissions("sys:user:remove")
+	@PostMapping("/remove")
+	@ResponseBody
+	R remove(Long id) {
+		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		if (userService.delete(id) > 0) {
+			return R.ok();
+		}
+		return R.error();
+	}
+
+	@RequiresPermissions("sys:user:batchRemove")
+	@PostMapping("/batchRemove")
+	@ResponseBody
+	R batchRemove(@RequestParam("ids[]") Long[] userIds) {
+		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		int r = userService.batchDelete(userIds);
+		if (r > 0) {
+			return R.ok();
+		}
+		return R.error();
+	}
+
+	@PostMapping("/exit")
+	@ResponseBody
+	boolean exit(@RequestParam Map<String, Object> params) {
+		// 存在，不通过，false
+		return !userService.exit(params);
+	}
+
+	@RequiresPermissions("sys:user:resetPwd")
+	@RequestMapping("/resetPwd/{id}")
+	String resetPwd(@PathVariable("id") Long userId, Model model) {
+
+		Esecusrdef esecusrdef = new Esecusrdef();
+		esecusrdef.setUserId(userId);
+		model.addAttribute("user", esecusrdef);
+		return prefix + "/reset_pwd";
+	}
+
+	@PostMapping("/resetPwd")
+	@ResponseBody
+	R resetPwd(EsecusrdefC esecusrdefC) {
+		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		try {
+			userService.resetPwd(esecusrdefC, getUser());
+			return R.ok();
+		} catch (Exception e) {
+			return R.error(1, e.getMessage());
+		}
+
+	}
+
+	@RequiresPermissions("sys:user:resetPwd")
+	@PostMapping("/adminResetPwd")
+	@ResponseBody
+	R adminResetPwd(EsecusrdefC esecusrdefC) {
+		if (Constant.DEMO_ACCOUNT.equals(getUsername())) {
+			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		try {
+			userService.adminResetPwd(esecusrdefC);
+			return R.ok();
+		} catch (Exception e) {
+			return R.error(1, e.getMessage());
+		}
+
+	}
+
+	@RequestMapping("/tree")
+	@ResponseBody
+	public Tree<Esecdptdef> tree() {
+		Tree<Esecdptdef> tree = new Tree<Esecdptdef>();
+		tree = userService.getTree();
+		return tree;
+	}
+
+	@RequestMapping("/treeView")
+	String treeView() {
+		return prefix + "/userTree";
+	}
+
+	@RequestMapping("/personal")
+	String personal(Model model) {
+		Esecusrdef esecusrdef = userService.get(getUserId());
+		model.addAttribute("user", esecusrdef);
+		model.addAttribute("hobbyList", dictService.getHobbyList(esecusrdef));
+		model.addAttribute("sexList", dictService.getSexList());
+		return prefix + "/personal";
+	}
+
+	@ResponseBody
+	@PostMapping("/uploadImg")
+	R uploadImg(@RequestParam("avatar_file") MultipartFile file, String avatar_data, HttpServletRequest request) {
+		if ("test".equals(getUsername())) {
+			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
+		}
+		Map<String, Object> result = new HashMap<>();
+		try {
+			result = userService.updatePersonalImg(file, avatar_data, getUserId());
+		} catch (Exception e) {
+			return R.error("更新图像失败！");
+		}
+		if (result != null && result.size() > 0) {
+			return R.ok(result);
+		} else {
+			return R.error("更新图像失败！");
+		}
+	}
+}

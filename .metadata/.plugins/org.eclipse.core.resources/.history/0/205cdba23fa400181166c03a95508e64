@@ -1,0 +1,48 @@
+/** 
+ * Project Name:SkynetEye
+ * File Name:Esecroldef.java 
+ * Package Name:com.skynet.common.bean 
+ * History
+ * Seq   Date        Developer      Description                        
+ *  ---------------------------------------------------------------------------
+ *  1    2018年8月20日    zeroLi        Create
+ *
+ *  ---------------------------------------------------------------------------
+ * Copyright (c) 2018, SkynetEye All Rights Reserved. 
+ * 
+ */ 
+package com.skynet.common.bean;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Esecroldef extends BaseObject {
+	/***
+	 * 角色Id
+	 */
+	private Long roleId;
+	/***
+	 * 角色名
+	 */
+	private String roleName;
+	/***
+	 * 角色标识
+	 */
+	private String roleSign;
+	/***
+	 * 备注
+	 */
+	private String remark;
+	private Long createUserId;
+	private Timestamp createTime;
+	private Long updateUserId;
+	private Timestamp updateTime;
+	/***
+	 * 菜单
+	 */
+	private List<Long> menuIds;
+}
